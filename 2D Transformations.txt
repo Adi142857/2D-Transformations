@@ -1,0 +1,113 @@
+#include<graphics.h>
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+int gd = DETECT, gm;
+int x1, y1, x2, y2, x3, y3, tx, ty, sx, sy, shx, shy, ch, ch1;
+clrscr();
+initgraph(&gd,&gm,”C:\\TURBOC3\\BGI”);
+printf(“\nEnter (x1, y1)”);
+scanf(“%d%d”,&x1,&y1);
+printf(“\nEnter (x2,y2)”);
+scanf(“%d%d”,&x2,&y2);
+printf(“\nEnter (x3,y3)”);
+scanf(“%d%d”,&x3,&y3);
+while(1)
+{
+printf(“\n1.Translation \n2.Scaling \n3.Shearing \n4.Reflection at X \n5. Reflection at Y \n6.Quit”);
+printf(“\nEnter your choice”);
+scanf(“%d”,&ch);
+clrscr();
+switch(ch)
+{
+case 1:
+{
+printf(“\nEnter tx and ty”);
+scanf(“%d%d”,&tx,&ty);
+line(x1,y1,x2,y2);
+line(x2,y2,x3,y3);
+line(x3,y3,x1,y1);
+line(x1+tx,y1+ty,x2+tx,y2+ty);
+line(x2+tx,y2+ty,x3+tx,y3+ty);
+line(x3+tx,y3+ty,x1+tx,y1+ty);
+break;
+}
+case 2:
+{
+printf(“\nEnter sx and sy”);
+scanf(“%d%d”,&sx,&sy);
+line(x1,y1,x2,y2);
+line(x2,y2,x3,y3);
+line(x3,y3,x1,y1);
+line(x1*sx,y1*sy,x2*sx,y2*sy);
+line(x2*sx,y2*sy,x3*sx,y3*sy);
+line(x3*sx,y3*sy,x1*sx,y1*sy);
+break;
+}
+case 3:
+{
+printf(“\n Choose: “);
+printf(“\n1. Shearing in X \n2. Shearing in Y”);
+scanf(“%d”,&ch1);
+if(ch1==1)
+{
+printf(“\nEnter shx”);
+scanf(“%d”,&shx);
+line(x1,y1,x2,y2);
+line(x2,y2,x3,y3);
+line(x3,y3,x1,y1);
+line(x1+y1*shx,y1,x2+y2*shx,y2);
+line(x2+y2*shx,y2,x3+y3*shx,y3);
+line(x3+y3*shx,y3,x1+y1*shx,y1);
+break;
+}
+else if(ch1==2)
+{
+printf(“\nEnter shy”);
+scanf(“%d”,&shy);
+line(x1,y1,x2,y2);
+line(x2,y2,x3,y3);
+line(x3,y3,x1,y1);
+line(x1,y1+x1*shy,x2,y2+x2*shy);
+line(x2,y2+x2*shy,x3,y3+x3*shy);
+line(x3,y3+x3*shy,x1,y1+x1*shy);
+break;
+}
+else
+{
+printf(“Wrong choice”);
+break;
+}
+case 4:
+{
+line(x1,y1,x2,y2);
+line(x2,y2,x3,y3);
+line(x3,y3,x1,y1);
+line(x1,((240-y1)+240),x2, ((240-y2)+240));
+line(x2, ((240-y2)+240),x3, ((240-y3)+240));
+line(x3, ((240-y3)+240),x1, ((240-y1)+240));
+break;
+}
+case 5:
+{
+line(x1,y1,x2,y2);
+line(x2,y2,x3,y3);
+line(x3,y3,x1,y1);
+line(((320+x1)+320),y1, ((320+x2)+320),y2);
+line(((320+x2)+320),y2, ((320+x3)+320),y3);
+line(((320+x3)+320),y3, ((320+x1)+320),y1);
+break;
+}
+case 6:
+{
+exit(0);
+}
+default:
+printf(“Wrong Choice”);
+}
+getch ();
+closegraph();
+}
+}
+}
